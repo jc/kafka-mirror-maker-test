@@ -1,0 +1,41 @@
+version: "2"
+
+volumes:
+  zk_data:
+    driver: local
+  kafka_data:
+    driver: local
+
+services:
+  zookeeper:
+    container_name: zookeeper
+    image: confluent/zookeeper
+    ports:
+      - "2181:2181"
+    volumes:
+      - "zk_data:/var/lib/zookeeper"
+    user: root
+    network_mode: "host"
+    restart: "always"
+    
+  kafka:
+    container_name: kafka
+    image: confluent/kafka:0.10.0.0-cp1
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    volumes:
+      - "kafka_data:/var/lib/kafka"
+      - "./test.sh:/opt/test.sh"
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: "zaius:2181"
+      KAFKA_ADVERTISED_HOST_NAME: "zaius"
+    network_mode: "host"
+    restart: "always"
+    user: root
+    entrypoint: ""
+    command: >
+      bash -c 'echo "127.0.0.1 zaius" >> /etc/hosts &&
+      echo "192.168.99.101 zaius2" >> /etc/hosts &&
+      /usr/local/bin/kafka-docker.sh'

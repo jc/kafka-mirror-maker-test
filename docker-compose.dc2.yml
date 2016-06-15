@@ -1,0 +1,60 @@
+version: "2"
+
+volumes:
+  zk_data:
+    driver: local
+  kafka_data:
+    driver: local
+
+services:
+  zookeeper:
+    container_name: zookeeper
+    image: confluent/zookeeper
+    ports:
+      - "2181:2181"
+    volumes:
+      - "zk_data:/var/lib/zookeeper"
+    user: root
+    network_mode: "host"
+    restart: "always"
+    
+  kafka:
+    container_name: kafka
+    image: confluent/kafka:0.10.0.0-cp1
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    volumes:
+      - "kafka_data:/var/lib/kafka"
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: "zaius2:2181"
+      KAFKA_ADVERTISED_HOST_NAME: "zaius2"
+    network_mode: "host"
+    restart: "always"
+    user: root
+    entrypoint: ""
+    command: >
+      bash -c 'echo "127.0.0.1 zaius2" >> /etc/hosts &&
+      echo "192.168.99.100 zaius" >> /etc/hosts &&
+      /usr/local/bin/kafka-docker.sh'
+
+  kafka-mirror-maker:
+    container_name: kafka-mirror-maker
+    image: confluent/kafka:0.10.0.0-cp1
+    depends_on:
+      - zookeeper
+      - kafka
+    volumes:
+      - "./dc1-consumer.properties:/opt/dc1-consumer.properties"
+      - "./dc2-producer.properties:/opt/dc2-producer.properties"
+    network_mode: "host"
+    restart: "always"
+    user: root
+    entrypoint: ""
+    command: >
+      bash -c 'echo "127.0.0.1 zaius2" >> /etc/hosts &&
+      echo "192.168.99.100 zaius" >> /etc/hosts &&
+      sed -i "s/WARN/INFO/g" /etc/kafka/tools-log4j.properties &&
+      kafka-run-class kafka.tools.MirrorMaker  --consumer.config /opt/dc1-consumer.properties --producer.config /opt/dc2-producer.properties --num.streams 1 --whitelist ".+_events$$,direct1,direct2,direct3,direct4,direct5,direct6,direct7,direct8,direct9,direct10"'
+
