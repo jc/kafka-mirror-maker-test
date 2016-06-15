@@ -3,9 +3,9 @@
 for message_number in 1 2; do
      echo "Round ${message_number}: Sending messages";
      for i in `seq 1 10`; do
-          echo "foo|{"message":"${message_number}"}" | kafka-console-producer --broker-list zaius:9092 --topic direct${i} --property parse.key=true --property key.separator="|";
+          echo "foo|{\"message\":\"${message_number}\"}" | kafka-console-producer --broker-list zaius:9092 --topic direct${i} --property parse.key=true --property key.separator="|";
           sleep 1;
-          echo "foo|{"message":"${message_number}"}" | kafka-console-producer --broker-list zaius:9092 --topic ${i}_events --property parse.key=true --property key.separator="|";
+          echo "foo|{\"message\":\"${message_number}\"}" | kafka-console-producer --broker-list zaius:9092 --topic ${i}_events --property parse.key=true --property key.separator="|";
           sleep 2;
      done;
      echo "Round ${message_number}: Send complete. Topics in aggregate cluster at end of round";

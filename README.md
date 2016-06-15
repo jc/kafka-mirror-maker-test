@@ -84,13 +84,17 @@ $ docker-compose -f docker-compose.dc2.yml down -v
 ```
 Round 1: Sending messages
 Round 1: Send complete. Topics in aggregate cluster at end of round
+2_events
+3_events
+4_events
+direct2
 direct3
-direct6
+direct4
+direct5
 ---
 Round 2: Sending messages
 Round 2: Send complete. Topics in aggregate cluster at end of round
 10_events
-1_events
 2_events
 3_events
 4_events
@@ -99,6 +103,7 @@ Round 2: Send complete. Topics in aggregate cluster at end of round
 7_events
 8_events
 9_events
+direct1
 direct10
 direct2
 direct3
@@ -110,121 +115,127 @@ direct8
 direct9
 ---
 Messages in topic 10_events in edge cluster
-{message:1}
-{message:2}
+{"message":"1"}
+{"message":"2"}
 Messages in topic 10_events in aggregate cluster
-{message:2}
+{"message":"2"}
 ---
 Messages in topic 1_events in edge cluster
-{message:1}
-{message:2}
+{"message":"1"}
 Messages in topic 1_events in aggregate cluster
-{message:2}
 ---
 Messages in topic 2_events in edge cluster
-{message:1}
-{message:2}
+{"message":"1"}
+{"message":"2"}
 Messages in topic 2_events in aggregate cluster
-{message:2}
+{"message":"1"}
+{"message":"2"}
 ---
 Messages in topic 3_events in edge cluster
-{message:2}
+{"message":"1"}
+{"message":"2"}
 Messages in topic 3_events in aggregate cluster
-{message:2}
+{"message":"1"}
+{"message":"2"}
 ---
 Messages in topic 4_events in edge cluster
-{message:1}
-{message:2}
+{"message":"1"}
+{"message":"2"}
 Messages in topic 4_events in aggregate cluster
-{message:2}
+{"message":"1"}
+{"message":"2"}
 ---
 Messages in topic 5_events in edge cluster
-{message:1}
-{message:2}
+{"message":"1"}
+{"message":"2"}
 Messages in topic 5_events in aggregate cluster
-{message:2}
+{"message":"2"}
 ---
 Messages in topic 6_events in edge cluster
-{message:1}
-{message:2}
+{"message":"1"}
+{"message":"2"}
 Messages in topic 6_events in aggregate cluster
-{message:2}
+{"message":"2"}
 ---
 Messages in topic 7_events in edge cluster
-{message:2}
+{"message":"1"}
+{"message":"2"}
 Messages in topic 7_events in aggregate cluster
-{message:2}
+{"message":"2"}
 ---
 Messages in topic 8_events in edge cluster
-{message:1}
-{message:2}
+{"message":"1"}
+{"message":"2"}
 Messages in topic 8_events in aggregate cluster
-{message:2}
+{"message":"2"}
 ---
 Messages in topic 9_events in edge cluster
-{message:1}
-{message:2}
+{"message":"1"}
+{"message":"2"}
 Messages in topic 9_events in aggregate cluster
-{message:2}
+{"message":"2"}
 ---
 Messages in topic direct1 in edge cluster
-{message:1}
+{"message":"2"}
 Messages in topic direct1 in aggregate cluster
+{"message":"2"}
 ---
 Messages in topic direct10 in edge cluster
-{message:1}
-{message:2}
+{"message":"1"}
+{"message":"2"}
 Messages in topic direct10 in aggregate cluster
-{message:2}
+{"message":"2"}
 ---
 Messages in topic direct2 in edge cluster
-{message:1}
-{message:2}
+{"message":"1"}
+{"message":"2"}
 Messages in topic direct2 in aggregate cluster
-{message:2}
+{"message":"1"}
+{"message":"2"}
 ---
 Messages in topic direct3 in edge cluster
-{message:1}
-{message:2}
+{"message":"1"}
+{"message":"2"}
 Messages in topic direct3 in aggregate cluster
-{message:1}
-{message:2}
+{"message":"1"}
+{"message":"2"}
 ---
 Messages in topic direct4 in edge cluster
-{message:1}
-{message:2}
+{"message":"1"}
+{"message":"2"}
 Messages in topic direct4 in aggregate cluster
-{message:2}
+{"message":"1"}
+{"message":"2"}
 ---
 Messages in topic direct5 in edge cluster
-{message:1}
-{message:2}
+{"message":"1"}
+{"message":"2"}
 Messages in topic direct5 in aggregate cluster
-{message:2}
+{"message":"1"}
+{"message":"2"}
 ---
 Messages in topic direct6 in edge cluster
-{message:1}
-{message:2}
+{"message":"1"}
+{"message":"2"}
 Messages in topic direct6 in aggregate cluster
-{message:1}
-{message:2}
+{"message":"2"}
 ---
 Messages in topic direct7 in edge cluster
-{message:1}
-{message:2}
+{"message":"1"}
+{"message":"2"}
 Messages in topic direct7 in aggregate cluster
-{message:2}
+{"message":"2"}
 ---
 Messages in topic direct8 in edge cluster
-{message:1}
-{message:2}
+{"message":"1"}
+{"message":"2"}
 Messages in topic direct8 in aggregate cluster
-{message:2}
+{"message":"2"}
 ---
 Messages in topic direct9 in edge cluster
-{message:1}
-{message:2}
+{"message":"1"}
+{"message":"2"}
 Messages in topic direct9 in aggregate cluster
-{message:2}
+{"message":"2"}
 ---
 ```
